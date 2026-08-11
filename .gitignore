@@ -1,0 +1,11 @@
+.vscode/
+bin/
+build/
+logs/
+shell/
+data/
+doc/
+*.log
+*.md
+*.laz
+*.old

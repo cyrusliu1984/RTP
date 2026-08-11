@@ -1,0 +1,32 @@
+LIDAR:
+  RECEIVER:
+    IP: "192.168.1.108"
+    PORT: 49876
+POS:
+  RECEIVER:
+    COMPORT: "/dev/ttyS1" # 串口号(Linux默认串口)
+    BAUDRATE: 460800 # 460800 # 波特率
+TRANS:
+  IP: "192.168.5.120"
+  PORT: 49875
+PROJECTION:
+  LIDAR_TO_IMU: # 激光雷达到IMU的标定参数
+    YAW: 90.0 # 偏航角(度)
+    PITCH: 0.0 # 俯仰角(度)
+    ROLL: -90.0 # 滚转角(度)
+    TRANSLATION: [0.283, -0.004, -0.022] # 平移向量(m)
+  CAMERA_TO_IMU: # 相机到IMU的标定参数
+    YAW: 90.0 # 偏航角(度)
+    PITCH: 0.0 # 俯仰角(度)
+    ROLL: 180.0 # 滚转角(度)
+    TRANSLATION: [0.304, 0.119, -0.113] # 平移向量(m)
+FLIGHT:
+  ALTITUDE: 1000 # 飞行高度(m)
+  SPEED: 15 # 飞行速度(m/s)
+  ROI_ENABLED: false # 是否启用感兴趣区域
+  ROI_AREA: # 感兴趣区域(经纬度)
+    LAT_MIN: 30.4900 # (单位：度)
+    LAT_MAX: 30.5200 #（单位：度）
+    LON_MIN: 114.1700 # (单位：度)
+    LON_MAX: 114.2000 # (单位：度)
+  

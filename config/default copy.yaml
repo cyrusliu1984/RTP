@@ -1,0 +1,26 @@
+LIDAR:
+  RECEIVER:
+    IP: "192.168.1.108"
+    PORT: 49876
+POS:
+  RECEIVER:
+    COMPORT: "/dev/ttyS1" # 串口号(Linux默认串口)
+    BAUDRATE: 460800 # 460800 # 波特率
+CAMERA:
+  RESOLUTION:
+    WIDTH: 2560
+    HEIGHT: 2560
+TRANS:
+  IP: "192.168.5.120"
+  PORT: 49875
+PROJECTION:
+  LIDAR_TO_IMU: # 激光雷达到IMU的标定参数
+    YAW: 90.0 # 偏航角(度)
+    PITCH: 0.0 # 俯仰角(度)
+    ROLL: -90.0 # 滚转角(度)
+    TRANSLATION: [0.283, -0.004, -0.022] # 平移向量(m)
+  CAMERA_TO_IMU: # 相机到IMU的标定参数
+    YAW: 90.0 # 偏航角(度)
+    PITCH: 0.0 # 俯仰角(度)
+    ROLL: 180.0 # 滚转角(度)
+    TRANSLATION: [0.304, 0.119, -0.113] # 平移向量(m)
