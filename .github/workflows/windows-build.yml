@@ -26,10 +26,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-vcpkg-fast-cache-
 
-    # 2. 精简版依赖安装 (仅安装核心子模块，避免编译大而全的模块，构建速度提升 5~10 倍)
+    # 2. 精简版依赖安装 (优化包名称，避免编译巨型无关子模块)
     - name: Fast install minimal dependencies via vcpkg
       run: |
-        vcpkg install eigen3 yaml-cpp laszip spdlog opencv4[core,jpeg,png] pcl[core,io,filters] --triplet x64-windows
+        vcpkg install eigen3 yaml-cpp laszip spdlog opencv4[core,jpeg,png] pcl --triplet x64-windows
 
     - name: Configure CMake
       run: |
