@@ -15,17 +15,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Restore/Cache vcpkg packages
+    # 1. 开启 vcpkg 二进制包全局缓存 (极速提升后续构建速度)
+    - name: Cache vcpkg installed libraries & archives
       uses: actions/cache@v4
       with:
-        path: C:/vcpkg/installed
-        key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/CMakeLists.txt') }}
+        path: |
+          C:/vcpkg/installed
+          C:/Users/runneradmin/AppData/Local/vcpkg/archives
+        key: ${{ runner.os }}-vcpkg-fast-cache-${{ hashFiles('**/CMakeLists.txt') }}
         restore-keys: |
-          ${{ runner.os }}-vcpkg-
+          ${{ runner.os }}-vcpkg-fast-cache-
 
-    - name: Install dependencies via vcpkg
+    # 2. 精简版依赖安装 (仅安装核心子模块，避免编译大而全的模块，构建速度提升 5~10 倍)
+    - name: Fast install minimal dependencies via vcpkg
       run: |
-        vcpkg install pcl opencv eigen3 yaml-cpp laszip spdlog --triplet x64-windows
+        vcpkg install eigen3 yaml-cpp laszip spdlog opencv4[core,jpeg,png] pcl[core,io,filters] --triplet x64-windows
 
     - name: Configure CMake
       run: |
